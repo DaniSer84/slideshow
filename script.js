@@ -13,7 +13,7 @@ let slidesAndDotsContainer = document.querySelector('.slides-and-dots-container'
 createSlideShow(slideshowContainer, dotsContainer, SLIDES)
 repeatedPlusSlides()
 
-// Stop the movement when on slide container
+// Stop the movement when on container
 slidesAndDotsContainer.onmouseenter = () => clearTimeout(timeout)
 slidesAndDotsContainer.onmouseleave = () => repeatedPlusSlides()
 

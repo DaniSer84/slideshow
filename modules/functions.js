@@ -27,7 +27,7 @@ function createSlideShow(slidesContainer, dotsContainer, list) {
 }
 
 //******************/
-// functions for slideshow and movement
+// SLIDESHOW AND AUTOMATIC SWITCHING
 
 let slideIndex = 0;
 let timeout
