@@ -1,29 +1,23 @@
 import { SLIDES } from "./modules/slides.js";
-import { createSlideShow, showSlides, currentSlide, plusSlides, slideIndex } from "./modules/functions.js";
+import { createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides } from "./modules/functions.js";
 
 // VARIABLES
 let slideshowContainer = document.querySelector('.slideshow-container')
 let dotsContainer = document.getElementById('dots-container')
 let prev = document.querySelector('.prev') 
 let next = document.querySelector('.next')
-let timeout
+let dots = document.getElementsByClassName('dot')
+let slidesAndDotsContainer = document.querySelector('.slides-and-dots-container')
 
 //EVENTS AND FUNCTIONS
 createSlideShow(slideshowContainer, dotsContainer, SLIDES)
-
 repeatedPlusSlides()
 
-
-function repeatedPlusSlides() {
-  plusSlides(1)
-  timeout = setTimeout(repeatedPlusSlides, 2000)
-}
-
-let slidesAndDotsContainer = document.querySelector('.slides-and-dots-container')
-
+// Stop the movement when on slide container
 slidesAndDotsContainer.onmouseenter = () => clearTimeout(timeout)
 slidesAndDotsContainer.onmouseleave = () => repeatedPlusSlides()
 
+// prev and next buttons events
 prev.addEventListener('click', () => {
   plusSlides(-1)
 })
@@ -32,15 +26,14 @@ next.addEventListener('click', () => {
   plusSlides(1)
 })
 
-showSlides();
-
-let dots = document.getElementsByClassName('dot')
+// dots event
 let dotsList = Array.from(dots)
 dotsList.forEach(dot => {
   dot.addEventListener('click', () => {
     currentSlide(dotsList.indexOf(dot) + 1)
   })
 })
+
 
 
 
