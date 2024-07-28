@@ -44,6 +44,7 @@ dotsList.forEach(dot => {
 let stopBtn = document.querySelector('#stop-btn')
 stopBtn.addEventListener('click', () => {
   clearTimeout(timeout)
+  clearTimeout(timeout2)
 })
 
 
