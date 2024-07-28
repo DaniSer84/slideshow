@@ -75,28 +75,48 @@ function showSlides(n) {
   function selectModal(modal, container) {
     container.innerHtml = ''
     let article = document.createElement('article')
-    let modalImgContainer = document.createElement('div')
-    let modalImg = document.createElement('img')
+    let modalSlideShowContainer = document.createElement('div')
     let modalTextContainer = document.createElement('div')
     let modalTitle = document.createElement('h1')
     let modalDescription = document.createElement('p')
     let closeModalBtn = document.createElement('i')
-  
+    let prev = document.createElement('a')
+    let next = document.createElement('a')
+
+    prev.innerHTML = `<i class="fa-solid fa-chevron-left" style="color: #ffffff"></i>`
+    next.innerHTML = `<i class="fa-solid fa-chevron-right" style="color: #ffffff"></i>`
+
+    prev.className = 'modal-prev'
+    next.className = 'modal-next'
+    
+    modal.slideImages.forEach(slide => {
+      let modalImageContainer = document.createElement('div')
+      let modalImageNumber = document.createElement('div')
+      let modalImg = document.createElement('img')
+
+      modalImageNumber.className = 'numbertext'
+      modalImageNumber.innerHTML = `${modal.slideImages.indexOf(slide) + 1} / ${modal.slideImages.length}`
+      
+      modalImageContainer.className = 'myModalSlide fade'
+      modalImg.src = slide
+      modalImageContainer.append(modalImg, modalImageNumber)
+      modalSlideShowContainer.append(modalImageContainer)
+    })
+    
     article.className = 'myModal'
-    modalImgContainer.className = 'modal-img-container'
+    modalSlideShowContainer.className = 'modal-img-container slideshow-container'
     modalTextContainer.className = 'modal-text-container'
     modalTitle.className = 'modal-title'
     modalDescription.className = 'modal-description'
-    modalImg.src = modal.imageSrc
     modalTitle.textContent = modal.title
     modalDescription.textContent = modal.longDescription
-    closeModalBtn.className = 'fa-solid fa-circle-xmark'
+    closeModalBtn.className = 'fa-solid fa-circle-xmark close-modal-btn'
     
     closeModalBtn.addEventListener('click', () => container.classList.remove('show-modal'))
     
+    modalSlideShowContainer.append(prev, next)
     modalTextContainer.append(modalTitle, modalDescription)
-    modalImgContainer.append(modalImg)
-    article.append(modalImgContainer, modalTextContainer, closeModalBtn)
+    article.append(modalSlideShowContainer, modalTextContainer, closeModalBtn)
     container.append(article)
   }
 

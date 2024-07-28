@@ -28,7 +28,6 @@ prev.addEventListener('click', () => {
   plusSlides(-1)
 })
 next.addEventListener('click', () => {
-  console.log(slideIndex)
   plusSlides(1)
 })
 
@@ -58,5 +57,44 @@ for (let slide of slides) {
     modalContainer.innerHTML = ''
     selectModal(slideToShow, modalContainer)
     modalContainer.classList.add('show-modal')
+
+    
+    let modalSlides = Array.from(document.getElementsByClassName('myModalSlide'))
+
+    let modalSlideIndex = 1;
+    showModalSlides(modalSlideIndex);
+
+    let modalPrev = document.getElementsByClassName('modal-prev')
+    modalPrev[0].addEventListener('click', () => {
+      console.log(modalPrev)
+      plusModalSlides(-1)
+    })
+
+    let modalNext = document.getElementsByClassName('modal-next')
+    modalNext[0].addEventListener('click', () => {
+      plusModalSlides(1)
+    })
+
+
+    function plusModalSlides(n) {
+      showModalSlides(modalSlideIndex += n);
+    }
+
+    function showModalSlides(n) {
+      let i;
+      let slides = modalSlides
+      if (n > slides.length) {
+        modalSlideIndex = 1
+      }    
+      if (n < 1) {
+        modalSlideIndex = slides.length
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slides[modalSlideIndex-1].style.display = "block";  
+    }
   })
 }
+
+

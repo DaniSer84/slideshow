@@ -5,7 +5,7 @@ const SLIDES = [
         description: 'Description slide Description slideDescription slideDescription slide',
         longDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam vitae a quam voluptate quo nulla animi! Consequatur optio laudantium quisquam, minima nisi omnis dolor sit amet consectetur adipisicing elit. Aperiam vitae a quam voluptate quo nulla animi! Consequatur optio laudantium quisquam, minima nisi omnis dolor sit amet consectetur adipisicing elit. Aperiam vitae a quam voluptate quo nulla animi! Consequatur optio laudantium quisquam, minima nisi omnis dolor sit amet consectetur adipisicing elit. Aperiam vitae a quam voluptate quo nulla animi! Consequatur optio laudantium quisquam, minima nisi omnis ',
         imageSrc: 'https://placehold.co/600x400/png?text=slide1',
-        slideImages: ['https://placehold.co/600x400/png?text=slide]img1', 'https://placehold.co/600x400/png?text=slide]img2', 'https://placehold.co/600x400/png?text=slide]img3']
+        slideImages: ['https://placehold.co/600x400/png?text=slide1img1', 'https://placehold.co/600x400/png?text=slide1img2', 'https://placehold.co/600x400/png?text=slide1img3']
     },
     {
         id: 'slide-' + 2, 
