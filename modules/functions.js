@@ -2,7 +2,7 @@
 function createSlideShow(slidesContainer, dotsContainer, list) {
     list.forEach(element => {
         let slide = document.createElement('div')
-        let number = document.createElement('div')
+        // let number = document.createElement('div')
         let img = document.createElement('img')
         let title = document.createElement('h1')
         let description = document.createElement('p')
@@ -10,8 +10,8 @@ function createSlideShow(slidesContainer, dotsContainer, list) {
         let dot = document.createElement('span')
 
         slide.className = 'mySlides fade'
-        number.innerHTML = `${element.id} / ${list.length}`
-        number.className = 'numbertext'
+        // number.innerHTML = `${element.id} / ${list.length}`
+        // number.className = 'numbertext'
         img.src = element.imageSrc
         img.className = 'slide-img'
         title.textContent = element.title
@@ -20,7 +20,7 @@ function createSlideShow(slidesContainer, dotsContainer, list) {
         dot.className = 'dot'
 
         textContainer.append(title, description)
-        slide.append(number, img, textContainer)
+        slide.append(img, textContainer)
         slidesContainer.append(slide)
         dotsContainer.append(dot)
     });
