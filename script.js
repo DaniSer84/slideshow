@@ -8,14 +8,20 @@ let prev = document.querySelector('.prev')
 let next = document.querySelector('.next')
 let dots = document.getElementsByClassName('dot')
 let slidesAndDotsContainer = document.querySelector('.slides-and-dots-container')
+let timeout2 
 
 //EVENTS AND FUNCTIONS
 createSlideShow(slideshowContainer, dotsContainer, SLIDES)
 repeatedPlusSlides()
 
 // Stop the movement when on container
-slidesAndDotsContainer.onmouseenter = () => clearTimeout(timeout)
-slidesAndDotsContainer.onmouseleave = () => repeatedPlusSlides()
+slidesAndDotsContainer.onmouseenter = () => {
+  clearTimeout(timeout)
+  clearTimeout(timeout2)
+}
+slidesAndDotsContainer.onmouseleave = () => {
+  timeout2 = setTimeout(repeatedPlusSlides, 15000)
+}
 
 // prev and next buttons events
 prev.addEventListener('click', () => {
