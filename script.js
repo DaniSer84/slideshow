@@ -1,5 +1,5 @@
 import { SLIDES } from "./modules/slides.js";
-import { createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides } from "./modules/functions.js";
+import { createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides, selectModal } from "./modules/functions.js";
 
 // VARIABLES
 let slideshowContainer = document.querySelector('.slideshow-container')
@@ -40,7 +40,7 @@ dotsList.forEach(dot => {
   })
 })
 
-
+// button to stop auto-movement
 let stopBtn = document.querySelector('#stop-btn')
 stopBtn.addEventListener('click', () => {
   clearTimeout(timeout)
@@ -48,4 +48,15 @@ stopBtn.addEventListener('click', () => {
 })
 
 
+// MODAL
+let slides = document.getElementsByClassName('mySlides')
+let modalContainer = document.querySelector('.modal-container')
 
+for (let slide of slides) {
+  slide.addEventListener('click', () => {
+    let slideToShow = SLIDES.find(slideToShow => slideToShow.id === slide.id )
+    modalContainer.innerHTML = ''
+    selectModal(slideToShow, modalContainer)
+    modalContainer.classList.add('show-modal')
+  })
+}

@@ -10,6 +10,7 @@ function createSlideShow(slidesContainer, dotsContainer, list) {
         let dot = document.createElement('span')
 
         slide.className = 'mySlides fade'
+        slide.id = element.id
         // number.innerHTML = `${element.id} / ${list.length}`
         // number.className = 'numbertext'
         img.src = element.imageSrc
@@ -70,5 +71,34 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
   }
 
+  // FUNCTIONS FOR MODAL
+  function selectModal(modal, container) {
+    container.innerHtml = ''
+    let article = document.createElement('article')
+    let modalImgContainer = document.createElement('div')
+    let modalImg = document.createElement('img')
+    let modalTextContainer = document.createElement('div')
+    let modalTitle = document.createElement('h1')
+    let modalDescription = document.createElement('p')
+    let closeModalBtn = document.createElement('i')
+  
+    article.className = 'myModal'
+    modalImgContainer.className = 'modal-img-container'
+    modalTextContainer.className = 'modal-text-container'
+    modalTitle.className = 'modal-title'
+    modalDescription.className = 'modal-description'
+    modalImg.src = modal.imageSrc
+    modalTitle.textContent = modal.title
+    modalDescription.textContent = modal.longDescription
+    closeModalBtn.className = 'fa-solid fa-circle-xmark'
+    
+    closeModalBtn.addEventListener('click', () => container.classList.remove('show-modal'))
+    
+    modalTextContainer.append(modalTitle, modalDescription)
+    modalImgContainer.append(modalImg)
+    article.append(modalImgContainer, modalTextContainer, closeModalBtn)
+    container.append(article)
+  }
 
-export {createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides}
+export {createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides, selectModal}
+
