@@ -105,17 +105,16 @@ img {vertical-align: middle;}
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.758);
-  z-index: 100;
   display: flex;
-  scale: 0;
+  z-index: -99;
   opacity: 0;
-  transition-property: opacity, scale;
-  transition-duration: .6s;
+  transition-property: opacity, z-index;
+  transition-duration: .3s;
   transition-timing-function: ease-in-out;
-  transform-origin: bottom left;
+  transform-origin: center;
 }
 .show-modal {
-  scale: 1;
+  z-index: 100;
   opacity: 1;
 }
 .myModal {
@@ -126,6 +125,16 @@ img {vertical-align: middle;}
   overflow: auto;
   max-height: 100%;
   margin: 10px;
+  animation: modalLoad .6s ease-in-out forwards;
+}
+@keyframes modalLoad {
+  from {scale:0; opacity: 0;};
+  to {scale:1; opacity: 1;};
+}
+
+.show-card {
+  scale: 1;
+  opacity: 1;
 }
 .myModal img {
   width: 100%;
