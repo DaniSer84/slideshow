@@ -107,7 +107,7 @@ img {vertical-align: middle;}
   background-color: rgba(0, 0, 0, 0.758);
   z-index: 100;
   display: flex;
-  scale: 0.3;
+  scale: 0;
   opacity: 0;
   transition-property: opacity, scale;
   transition-duration: .6s;
