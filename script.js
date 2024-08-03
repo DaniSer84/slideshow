@@ -1,5 +1,5 @@
 import { SLIDES } from "./modules/mock/slides.js";
-import { currentSlide, plusSlides, timeout, repeatedPlusSlides } from "./modules/components/slideShow.js";
+import { currentSlide, plusSlides, timeout, repeatedPlusSlides, plusModalSlides, currentModalSlide } from "./modules/components/slideShow.js";
 import { createSlideShow } from "./modules/components/createSlideShow.js";
 import { selectModal } from "./modules/components/selectModal.js";
 
@@ -62,8 +62,7 @@ for (let slide of slides) {
     modalContainer.classList.add('show-modal')
     
     let modalSlides = Array.from(document.getElementsByClassName('myModalSlide'))
-    let modalSlideIndex = 1;
-    showModalSlides(modalSlideIndex, modalSlides);
+    plusModalSlides(0, modalSlides)
 
     let modalPrev = document.getElementsByClassName('modal-prev')
     modalPrev[0].addEventListener('click', () => {
@@ -75,23 +74,8 @@ for (let slide of slides) {
       plusModalSlides(1, modalSlides)
     })
 
-    function plusModalSlides(n, slides) {
-      showModalSlides(modalSlideIndex += n, slides);
-    }
-
-    function showModalSlides(n, slides) {
-      let i;
-      if (n > slides.length) {
-        modalSlideIndex = 1
-      }    
-      if (n < 1) {
-        modalSlideIndex = slides.length
-      }
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      slides[modalSlideIndex-1].style.display = "block";  
-    }
+    let closeModalBtn = document.getElementsByClassName('close-modal-btn')
+    closeModalBtn[0].addEventListener('click', () => setTimeout(() => currentModalSlide(1, modalSlides), 500))
   })
 }
 

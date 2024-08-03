@@ -41,5 +41,30 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
   }
 
-export { currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides}
+// modal slideshow
+let modalSlideIndex = 1;
+
+function plusModalSlides(n, slides) {
+  showModalSlides(modalSlideIndex += n, slides);
+}
+
+function currentModalSlide(n, slides) {
+  showModalSlides(modalSlideIndex = n, slides)
+}
+
+function showModalSlides(n, slides) {
+  let i;
+  if (n > slides.length) {
+    modalSlideIndex = 1
+  }    
+  if (n < 1) {
+    modalSlideIndex = slides.length
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slides[modalSlideIndex-1].style.display = "block";  
+}
+
+export { currentSlide, plusSlides, timeout, repeatedPlusSlides, plusModalSlides, currentModalSlide}
 
