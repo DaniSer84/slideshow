@@ -43,12 +43,12 @@ dotsList.forEach(dot => {
   })
 })
 
-// // button to stop auto-movement
-// let stopBtn = document.querySelector('#stop-btn')
-// stopBtn.addEventListener('click', () => {
-//   clearTimeout(timeout)
-//   clearTimeout(timeout2)
-// })
+// button to stop auto-movement
+let stopBtn = document.querySelector('#stop-btn')
+stopBtn.addEventListener('click', () => {
+  clearTimeout(timeout)
+  clearTimeout(timeout2)
+})
 
 
 // MODAL
