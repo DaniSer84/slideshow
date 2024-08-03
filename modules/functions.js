@@ -4,11 +4,11 @@ import { createEl } from "./createEl.js";
 function createSlideShow(slidesContainer, dotsContainer, list) {
     list.forEach(element => {
       let slide = createEl('div', element.id, 'mySlides fade', '', '', slidesContainer, '')
-        let img = createEl('img', '', 'slide-img', '', element.imageSrc, slide, '')
-        let textContainer = createEl('div', '', 'slide-text-container', '', '', slide)
-        let title = createEl('h1', '', '', element.title, '', textContainer)
-        let description = createEl('p', '', '', element.description, '', textContainer)
-        let dot = createEl('span', '', 'dot', '', '', dotsContainer)
+      let img = createEl('img', '', 'slide-img', '', element.imageSrc, slide, '')
+      let textContainer = createEl('div', '', 'slide-text-container', '', '', slide)
+      let title = createEl('h1', '', '', element.title, '', textContainer)
+      let description = createEl('p', '', '', element.description, '', textContainer)
+      let dot = createEl('span', '', 'dot', '', '', dotsContainer)
     });
 }
 
@@ -60,50 +60,22 @@ function showSlides(n) {
   // FUNCTIONS FOR MODAL
   function selectModal(modal, container) {
     container.innerHtml = ''
-    let article = document.createElement('article')
-    let modalSlideShowContainer = document.createElement('div')
-    let modalTextContainer = document.createElement('div')
-    let modalTitle = document.createElement('h1')
-    let modalDescription = document.createElement('p')
-    let closeModalBtn = document.createElement('i')
-    let prev = document.createElement('a')
-    let next = document.createElement('a')
+    let article = createEl('srticle', '', 'myModal', '', '', container)
+    let modalSlideShowContainer = createEl('div', '', 'modal-img-container slideshow-container', '', '', article)
+    let modalTextContainer = createEl('div', '', 'modal-text-container', '', '', article)
+    let modalTitle = createEl('h1', '', 'modal-title', modal.title, '', modalTextContainer)
+    let modalDescription = createEl('p', '', 'modal-description', modal.longDescription, '', modalTextContainer)
+    let closeModalBtn = createEl('i', '', 'fa-solid fa-circle-xmark close-modal-btn', '', '', article)
+    let prev = createEl('a', '', 'modal-prev', '<i class="fa-solid fa-chevron-left" style="color: #ffffff"></i>', '', modalSlideShowContainer)
+    let next = createEl('i', '', 'modal-next', '<i class="fa-solid fa-chevron-right" style="color: #ffffff"></i>', '', modalSlideShowContainer)
 
-    prev.innerHTML = `<i class="fa-solid fa-chevron-left" style="color: #ffffff"></i>`
-    next.innerHTML = `<i class="fa-solid fa-chevron-right" style="color: #ffffff"></i>`
-
-    prev.className = 'modal-prev'
-    next.className = 'modal-next'
-    
     modal.slideImages.forEach(slide => {
-      let modalImageContainer = document.createElement('div')
-      let modalImageNumber = document.createElement('div')
-      let modalImg = document.createElement('img')
-
-      modalImageNumber.className = 'numbertext'
-      modalImageNumber.innerHTML = `${modal.slideImages.indexOf(slide) + 1} / ${modal.slideImages.length}`
-      
-      modalImageContainer.className = 'myModalSlide fade'
-      modalImg.src = slide
-      modalImageContainer.append(modalImg, modalImageNumber)
-      modalSlideShowContainer.append(modalImageContainer)
+      let modalImageContainer = createEl('div', '', 'myModalSlide fade', '', '', modalSlideShowContainer)
+      let modalImageNumber = createEl('div', '', 'numbertext', `${modal.slideImages.indexOf(slide) + 1} / ${modal.slideImages.length}`, '', modalImageContainer)
+      let modalImg = createEl('img', '', '', '', slide, modalImageContainer)
     })
     
-    article.className = 'myModal'
-    modalSlideShowContainer.className = 'modal-img-container slideshow-container'
-    modalTextContainer.className = 'modal-text-container'
-    modalTitle.className = 'modal-title'
-    modalDescription.className = 'modal-description'
-    modalTitle.textContent = modal.title
-    modalDescription.textContent = modal.longDescription
-    closeModalBtn.className = 'fa-solid fa-circle-xmark close-modal-btn'
-    
     closeModalBtn.addEventListener('click', () => container.classList.remove('show-modal'))
-    
-    modalSlideShowContainer.append(prev, next)
-    modalTextContainer.append(modalTitle, modalDescription)
-    article.append(modalSlideShowContainer, modalTextContainer, closeModalBtn)
-    container.append(article)
   }
 
 export {createSlideShow, currentSlide, plusSlides, slideIndex, timeout, repeatedPlusSlides, selectModal}
